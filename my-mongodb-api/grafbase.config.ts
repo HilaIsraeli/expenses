@@ -1,4 +1,4 @@
-import { config, connector, graph } from '@grafbase/sdk'
+import { config, connector, graph, auth } from '@grafbase/sdk'
 
 // Welcome to Grafbase!
 //
@@ -14,18 +14,19 @@ const mongo = connector.MongoDB('Mongo', {
 })
 
 
-const address = g.type('Address', {
-  street: g.string().mapped('street_name')
-})
-
 mongo
   .model('User', {
     name: g.string(),
-    email: g.string().optional(),
-    address: g.ref(address)
+    email: g.string().unique(),
+    avatarUrl: g.url(),
+    description: g.string(),
   })
-  .collection('users')
+  .collection('users').auth(((rules) => {rules.private().read()}))
   
+mongo.model('Post', {
+  title: g.string(),
+  content: g.string(),
+})
 
 g.datasource(mongo)
 
@@ -45,15 +46,20 @@ g.datasource(mongo)
 //   resolver: 'hello-world',
 // })
 
+const jwt = auth.JWT({
+  issuer: 'grafbase',
+  secret: g.env('NEXTAUTH_SECRET'),
+})
+
 export default config({
   graph: g,
   // Authentication - https://grafbase.com/docs/auth
   auth: {
     // OpenID Connect
     // const oidc = auth.OpenIDConnect({ issuer: g.env('OIDC_ISSUER_URL') })
-    // providers: [oidc],
+    providers: [jwt],
     rules: (rules) => {
-      rules.public()
+      rules.private()
     },
   },
   // Caching - https://grafbase.com/docs/graphql-edge-caching
