@@ -1,4 +1,6 @@
-import { getUserQuery, createUserMutation } from "@/my-mongodb-api/grafql";
+
+import { ExpenseForm } from "@/components.types";
+import { getUserQuery, createUserMutation, createExpenseMutation } from "@/my-mongodb-api/grafql";
 import { GraphQLClient } from "graphql-request"
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -22,6 +24,7 @@ const makeGraphqlRequest = async (query: string, variables = {}) => {
 
 export const getUser = async (email: string) => {
     client.setHeader('x-api-key', apiKey)
+    console.log('getUser', email)
     const variables = {
         email
     }
@@ -41,5 +44,14 @@ export const createUser = async (name: string, email: string, avatarUrl: string,
     }
     const x = await makeGraphqlRequest(createUserMutation, variables)
     console.log('yyyy', x)
+    return x
+}
+
+
+export const createNewExpense = async (form : ExpenseForm) => {
+    client.setHeader('x-api-key', apiKey)
+    const variables = {input:{...form}}
+    const x = await makeGraphqlRequest(createExpenseMutation, variables)
+    console.log('createNewExpense return', x)
     return x
 }

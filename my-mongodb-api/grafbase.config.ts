@@ -28,6 +28,14 @@ mongo.model('Post', {
   content: g.string(),
 })
 
+mongo.model('Expense', {
+  title: g.string(),
+  ammount: g.string(),
+  wasExpenseToInsurance: g.string(),
+  insuranceCompany: g.string(),
+  date: g.string(),
+})
+
 g.datasource(mongo)
 
 // export default config({

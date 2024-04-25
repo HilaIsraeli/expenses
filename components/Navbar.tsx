@@ -29,7 +29,7 @@ const Navbar = async () => {
           {session?.user ? (
             <>
               <ProfileMenu session={session} />
-              <Link href="/add expense">Add Expense</Link>
+              <Link href="/create-expense">Create Expense</Link>
             </>
           ) : (
             <AuthProviders />

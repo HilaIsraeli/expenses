@@ -53,11 +53,10 @@ export interface SessionInterface extends Session {
   };
 }
 
-export interface ProjectForm {
-  title: string;
-  description: string;
-  image: string;
-  liveSiteUrl: string;
-  githubUrl: string;
-  category: string;
+export interface ExpenseForm {
+  title: string,
+  ammount: string | number,
+  wasExpenseToInsurance: Boolean,
+  insuranceCompany: string,
+  date: Date,
 }

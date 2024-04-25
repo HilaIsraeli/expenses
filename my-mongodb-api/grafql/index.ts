@@ -46,6 +46,18 @@ export const createUserMutation =
             }
             }
             }`   
+
+
+export const createExpenseMutation = 
+`	mutation CreateExpense($input: ExpenseCreateInput!) {
+    mongo{
+    expenseCreate(input: $input) {
+        insertedId
+            
+            
+            }
+            }
+            }`   
             
                   /*
       mutation Mongo {
