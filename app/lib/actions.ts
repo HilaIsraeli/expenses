@@ -1,6 +1,6 @@
 
 import { ExpenseForm } from "@/components.types";
-import { getUserQuery, createUserMutation, createExpenseMutation } from "@/my-mongodb-api/grafql";
+import { getUserQuery, createUserMutation, createExpenseMutation, getAllExpensesMutation } from "@/my-mongodb-api/grafql";
 import { GraphQLClient } from "graphql-request"
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -53,5 +53,12 @@ export const createNewExpense = async (form : ExpenseForm) => {
     const variables = {input:{...form}}
     const x = await makeGraphqlRequest(createExpenseMutation, variables)
     console.log('createNewExpense return', x)
+    return x
+}
+
+export const fetchAllExpenses = async () => {
+    client.setHeader('x-api-key', apiKey)
+    const x = await makeGraphqlRequest(getAllExpensesMutation)
+    console.log('getExpenses', x)
     return x
 }

@@ -56,7 +56,7 @@ export interface SessionInterface extends Session {
 export interface ExpenseForm {
   title: string,
   ammount: string | number,
-  wasExpenseToInsurance: Boolean,
+  wasExpenseToInsurance: string | Boolean,
   insuranceCompany: string,
-  date: Date,
+  date: string | Date,
 }

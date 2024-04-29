@@ -17,9 +17,9 @@ const ExpenseForm = ({
   const [form, setForm] = useState({
     title: "",
     ammount: "",
-    wasExpenseToInsurance: false,
+    wasExpenseToInsurance: "",
     insuranceCompany: "",
-    date: new Date(), //current date and time
+    date: "", //current date and time
   });
 
   const handleFormChange = (
@@ -30,7 +30,6 @@ const ExpenseForm = ({
   };
 
   const handleFormSubmit = async (e: FormEvent) => {
-    console.error("handleFormSubmit");
     e.preventDefault(); //don't reload the page
 
     try {
@@ -59,7 +58,7 @@ const ExpenseForm = ({
       />
       <FormField
         title={"Did you expense this to insurance?"}
-        placeholder={""}
+        placeholder={"yes / no"}
         state={form.wasExpenseToInsurance}
         setState={(value) => handleFormChange("wasExpenseToInsurance", value)}
       />
@@ -71,7 +70,7 @@ const ExpenseForm = ({
       />
       <FormField
         title={"Date"}
-        placeholder={""}
+        placeholder={String(new Date())}
         state={form.date}
         setState={(value) => handleFormChange("date", value)}
       />

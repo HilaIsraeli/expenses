@@ -1,7 +1,7 @@
 type Props = {
   type?: string;
   title: string;
-  placeholder: string;
+  placeholder: string | number | Boolean | Date;
   state: number | string | Boolean | Date;
   setState: (value: number | string | Boolean | Date) => void;
 };
@@ -14,7 +14,7 @@ const FormField = ({ type, title, placeholder, state, setState }: Props) => {
         className="form_field-input"
         type={type || "text"}
         value={state.toString()}
-        placeholder={placeholder}
+        placeholder={placeholder.toString()}
         onChange={(e) => setState(e.target.value)}
       />
     </div>

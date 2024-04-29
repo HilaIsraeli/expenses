@@ -14,6 +14,41 @@ export const getUserQuery =
       }
       `
 
+
+export const getAllExpensesMutation =
+    `query GetExpenses() {
+        mongo {
+          expenseCollection(last: 10) {
+            edges {
+              node {
+                id
+                title
+                ammount
+                wasExpenseToInsurance
+                insuranceCompany
+                date
+              }
+            }
+          }
+        }
+      }
+      `
+
+// export const getAllExpensesMutation =
+//     `query GetExpenses() {
+//         mongo {
+//           expense() {
+//             id
+//             title
+//             ammount
+//             wasExpenseToInsurance
+//             insuranceCompany
+//             date
+//           }
+//         }
+//       }
+//       `
+
       /*
 
 
