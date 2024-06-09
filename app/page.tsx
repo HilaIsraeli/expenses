@@ -1,14 +1,10 @@
-import { ExpenseForm } from "@/components.types";
+import {
+  ExpenseForm,
+  ExpenseSearchResult,
+  ExpenseSearchResultNode,
+} from "@/components.types";
 import { fetchAllExpenses } from "./lib/actions";
 import { ExpenseCard } from "@/components/ExpenseCard";
-
-type ExpenseSearchResultNode = {
-  node: ExpenseForm;
-};
-
-type ExpenseSearchResult = {
-  edges: ExpenseSearchResultNode[];
-};
 
 const Home = async () => {
   const expenses = (await fetchAllExpenses()) as ExpenseSearchResult[];
@@ -24,7 +20,7 @@ const Home = async () => {
       <section className="projects-grid">
         {expenses.mongo.expenseCollection.edges.map(
           (node: ExpenseSearchResultNode) => (
-            <ExpenseCard key={node.node.id} expense={node.node} />
+            <ExpenseCard id={node.node.id} expense={node.node} />
           )
         )}
       </section>

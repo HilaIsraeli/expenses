@@ -15,6 +15,7 @@ const ExpenseForm = ({
 }) => {
   const router = useRouter();
   const [form, setForm] = useState({
+    //id: "",
     title: "",
     ammount: "",
     wasExpenseToInsurance: "",
@@ -26,10 +27,12 @@ const ExpenseForm = ({
     key: string,
     value: string | number | Boolean | Date
   ) => {
+    console.log("1111111 key", key);
     setForm({ ...form, [key]: value });
   };
 
   const handleFormSubmit = async (e: FormEvent) => {
+    console.log("1111111 form", form);
     e.preventDefault(); //don't reload the page
 
     try {

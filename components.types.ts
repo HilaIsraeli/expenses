@@ -54,9 +54,25 @@ export interface SessionInterface extends Session {
 }
 
 export interface ExpenseForm {
+  id: string,
   title: string,
   ammount: string | number,
   wasExpenseToInsurance: string | Boolean,
   insuranceCompany: string,
   date: string | Date,
 }
+
+
+export type ExpenseSearchResultNode = {
+  node: ExpenseForm;
+};
+
+export type ExpenseSearchResult = {
+  edges: ExpenseSearchResultNode[];
+  pageInfo: {
+    hasPreviousPage: boolean;
+    hasNextPage: boolean;
+    startCursor: string;
+    endCursor: string;
+  };
+};

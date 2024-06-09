@@ -1,5 +1,4 @@
-export const getUserQuery =
-    `query GetUser($email: String!) {
+export const getUserQuery = `query GetUser($email: String!) {
         mongo {
           user(
             by: {email: $email}
@@ -12,11 +11,22 @@ export const getUserQuery =
           }
         }
       }
-      `
+      `;
 
+      export const getExpenseByIdQuery =`query GetExpenseById($id: ID){
+  mongo {
+    expense(by: {id: $id}) {
+      ammount
+      date
+      id
+      insuranceCompany
+      title
+      wasExpenseToInsurance
+    }
+  }
+}`;
 
-export const getAllExpensesMutation =
-    `query GetExpenses() {
+export const getAllExpensesMutation = `query GetExpenses() {
         mongo {
           expenseCollection(last: 10) {
             edges {
@@ -32,7 +42,7 @@ export const getAllExpensesMutation =
           }
         }
       }
-      `
+      `;
 
 // export const getAllExpensesMutation =
 //     `query GetExpenses() {
@@ -49,7 +59,7 @@ export const getAllExpensesMutation =
 //       }
 //       `
 
-      /*
+/*
 
 
 query Mongo {
@@ -70,9 +80,7 @@ query Mongo {
       }
       */
 
-
-export const createUserMutation = 
-`	mutation CreateUser($input: UserCreateInput!) {
+export const createUserMutation = `	mutation CreateUser($input: UserCreateInput!) {
     mongo{
     userCreate(input: $input) {
         insertedId
@@ -80,11 +88,9 @@ export const createUserMutation =
             
             }
             }
-            }`   
+            }`;
 
-
-export const createExpenseMutation = 
-`	mutation CreateExpense($input: ExpenseCreateInput!) {
+export const createExpenseMutation = `	mutation CreateExpense($input: ExpenseCreateInput!) {
     mongo{
     expenseCreate(input: $input) {
         insertedId
@@ -92,9 +98,10 @@ export const createExpenseMutation =
             
             }
             }
-            }`   
-            
-                  /*
+            }`;
+
+
+/*
       mutation Mongo {
   mongo {
     userCreate(

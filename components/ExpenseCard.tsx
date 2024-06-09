@@ -1,13 +1,24 @@
 import { ExpenseForm } from "@/components.types";
 import Link from "next/link";
 
-export const ExpenseCard = ({ expense }: { expense: ExpenseForm }) => {
+export const ExpenseCard = ({
+  id,
+  expense,
+}: {
+  id: string;
+  expense: ExpenseForm;
+}) => {
   return (
-    <div className="rounded-lg shadow-lg bg-white p-4 mb-4">
-      <div className="flex flex-col space-y-2">
-        <p className="font-bold text-lg">Title:</p>
-        <p>{expense.title}</p>
-        <p className="font-bold text-lg">Amount:</p>
+    <div className="flexCenter flex-col rounded-2xl drop-shadow-card">
+      <Link
+        href={`/expense/${id}`}
+        className="flexCenter group relative w-full h-full"
+      >
+        {/* <div className="hidden group-hover:flex profile_card-title"> */}
+        <p className="w-full">{expense.title}</p>
+        {/* </div> */}
+      </Link>
+      {/* <p className="font-bold text-lg">Amount:</p>
         <p>{expense.ammount}</p>
         <p className="font-bold text-lg">Date:</p>
         <p>{String(expense.date)}</p>
@@ -18,8 +29,8 @@ export const ExpenseCard = ({ expense }: { expense: ExpenseForm }) => {
             <p className="font-bold text-lg">Insurance Company:</p>
             <p>{expense.insuranceCompany}</p>
           </>
-        )}
-      </div>
+        )} */}
+      {/* </div> */}
     </div>
   );
 };
