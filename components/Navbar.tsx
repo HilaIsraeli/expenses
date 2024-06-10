@@ -25,7 +25,7 @@ const Navbar = async () => {
             </Link>
           ))}
         </ul>
-        <div className="flexCenter gap-4">
+        <div className="flex justify-end gap-4">
           {session?.user ? (
             <>
               <ProfileMenu session={session} />

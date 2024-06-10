@@ -9,28 +9,13 @@ export const ExpenseCard = ({
   expense: ExpenseForm;
 }) => {
   return (
-    <div className="flexCenter flex-col rounded-2xl drop-shadow-card">
+    <div className="flex flex-col rounded-lg shadow-lg p-4 bg-white my-8 mx-4">
       <Link
         href={`/expense/${id}`}
-        className="flexCenter group relative w-full h-full"
+        className="group relative w-full h-full text-lg font-bold text-blue-500"
       >
-        {/* <div className="hidden group-hover:flex profile_card-title"> */}
-        <p className="w-full">{expense.title}</p>
-        {/* </div> */}
+        <p className="w-full text-center">{expense.title}</p>
       </Link>
-      {/* <p className="font-bold text-lg">Amount:</p>
-        <p>{expense.ammount}</p>
-        <p className="font-bold text-lg">Date:</p>
-        <p>{String(expense.date)}</p>
-        <p className="font-bold text-lg">Was Expense To Insurance:</p>
-        <p>{expense.wasExpenseToInsurance ? "Yes" : "No"}</p>
-        {expense.wasExpenseToInsurance && (
-          <>
-            <p className="font-bold text-lg">Insurance Company:</p>
-            <p>{expense.insuranceCompany}</p>
-          </>
-        )} */}
-      {/* </div> */}
     </div>
   );
 };

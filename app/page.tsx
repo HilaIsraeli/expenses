@@ -1,14 +1,31 @@
 import {
-  ExpenseForm,
   ExpenseSearchResult,
   ExpenseSearchResultNode,
 } from "@/components.types";
 import { fetchAllExpenses } from "./lib/actions";
 import { ExpenseCard } from "@/components/ExpenseCard";
+import LoadMore from "@/components/LoadMore";
+import Categories from "@/components/Categories";
 
-const Home = async () => {
-  const expenses = (await fetchAllExpenses()) as ExpenseSearchResult[];
-  //console.log("expenses", expenses.mongo.expenseCollection.edges);
+type Props = {
+  searchParams: SearchParams;
+};
+
+type SearchParams = {
+  endcursor?: string | null;
+  wasExpenseToInsurance?: string | null;
+};
+
+const Home = async ({
+  searchParams: { endcursor, wasExpenseToInsurance },
+}: Props) => {
+  const expensesFull = (await fetchAllExpenses(
+    endcursor,
+    wasExpenseToInsurance
+  )) as ExpenseSearchResult[];
+  const expenses = expensesFull.mongo.expenseCollection;
+  // console.log("expenses1111", expenses.mongo.expenseCollection.edges);
+  // console.log("expenses1111", expenses);
 
   if (!expenses) {
     return <h1>No expenses found, lets add one</h1>;
@@ -16,16 +33,17 @@ const Home = async () => {
 
   return (
     <section className="flexStart flex-col paddings mb-16">
-      <h1>Categories</h1>
+      <Categories />
       <section className="projects-grid">
-        {expenses.mongo.expenseCollection.edges.map(
-          (node: ExpenseSearchResultNode) => (
-            <ExpenseCard id={node.node.id} expense={node.node} />
-          )
-        )}
+        {expenses.edges.map((node: ExpenseSearchResultNode) => (
+          <ExpenseCard id={node.node.id} expense={node.node} />
+        ))}
       </section>
       <h1>Posts</h1>
-      <h1>LoadMore</h1>
+      <LoadMore
+        endCursor={expenses?.pageInfo?.endCursor}
+        hasNextPage={expenses?.pageInfo?.hasNextPage}
+      />
     </section>
   );
 };

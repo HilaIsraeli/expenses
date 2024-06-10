@@ -13,7 +13,7 @@ export const getUserQuery = `query GetUser($email: String!) {
       }
       `;
 
-      export const getExpenseByIdQuery =`query GetExpenseById($id: ID){
+export const getExpenseByIdQuery = `query GetExpenseById($id: ID){
   mongo {
     expense(by: {id: $id}) {
       ammount
@@ -26,9 +26,16 @@ export const getUserQuery = `query GetUser($email: String!) {
   }
 }`;
 
-export const getAllExpensesMutation = `query GetExpenses() {
+export const deletelExpenseByIdMutation = `mutation DeletelExpenseById($id: ID) { mongo {
+    expenseDelete(by: {id: $id}) {
+      deletedCount
+    }
+  }
+}`;
+
+export const getAllExpensesMutation = `query GetExpenses($endcursor: String) {
         mongo {
-          expenseCollection(last: 10) {
+          expenseCollection(first: 4, after:$endcursor) {
             edges {
               node {
                 id
@@ -38,6 +45,36 @@ export const getAllExpensesMutation = `query GetExpenses() {
                 insuranceCompany
                 date
               }
+            }
+            pageInfo {
+              endCursor
+              hasNextPage
+              hasPreviousPage
+              startCursor
+            }
+          }
+        }
+      }
+      `;
+
+      export const getAllExpensesMutationWithWasExpenseToInsurance = `query GetExpenses($endcursor: String, $wasExpenseToInsurance: String) {
+        mongo {
+          expenseCollection(first: 3, after:$endcursor,filter: {wasExpenseToInsurance:{ eq: $wasExpenseToInsurance}}) {
+            edges {
+              node {
+                id
+                title
+                ammount
+                wasExpenseToInsurance
+                insuranceCompany
+                date
+              }
+            }
+            pageInfo {
+              endCursor
+              hasNextPage
+              hasPreviousPage
+              startCursor
             }
           }
         }
@@ -100,6 +137,15 @@ export const createExpenseMutation = `	mutation CreateExpense($input: ExpenseCre
             }
             }`;
 
+
+export const updateExpenseMutation = `	mutation UpdateExpense($input: ExpenseUpdateInput!, $id: ID!) {
+  mongo{
+  expenseUpdate(input: $input, by: {id: $id}) {
+      modifiedCount
+          }
+          }
+          }`;
+          
 
 /*
       mutation Mongo {

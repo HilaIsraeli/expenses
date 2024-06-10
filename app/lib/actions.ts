@@ -1,6 +1,6 @@
 
 import { ExpenseForm } from "@/components.types";
-import { getUserQuery, createUserMutation, createExpenseMutation, getAllExpensesMutation, getExpenseByIdQuery } from "@/my-mongodb-api/grafql";
+import { getUserQuery, createUserMutation, createExpenseMutation, getAllExpensesMutation, getExpenseByIdQuery, deletelExpenseByIdMutation, updateExpenseMutation, getAllExpensesMutationWithWasExpenseToInsurance } from "@/my-mongodb-api/grafql";
 import { GraphQLClient } from "graphql-request"
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -52,16 +52,37 @@ export const createNewExpense = async (form : ExpenseForm ) => {
     console.log('1111111 form', form)
     client.setHeader('x-api-key', apiKey)
     const variables = {input:{...form}}
-    //const variables = {input:{...form}, createdBy: creatorId}
     const x = await makeGraphqlRequest(createExpenseMutation, variables)
     console.log('createNewExpense return', x)
     return x
 }
 
-export const fetchAllExpenses = async () => {
+
+export const updateExpense = async (form : ExpenseForm, id: string ) => {
+    console.log('1111111updateExpense form', form)
     client.setHeader('x-api-key', apiKey)
-    const x = await makeGraphqlRequest(getAllExpensesMutation)
-    console.log('getExpenses', x)
+    const variables = {input:{...form}, id: id}
+    const x = await makeGraphqlRequest(updateExpenseMutation, variables)
+    console.log('updateExpense return', x)
+    return x
+}
+
+export const fetchAllExpenses = async (endcursor?: string | null, wasExpenseToInsurance?: string | null) => {
+    client.setHeader('x-api-key', apiKey)
+    console.log('fetchAllExpenses', endcursor, wasExpenseToInsurance)
+
+    let x;
+    if (wasExpenseToInsurance) {
+        const variables = { endcursor, wasExpenseToInsurance } 
+        x = await makeGraphqlRequest(getAllExpensesMutationWithWasExpenseToInsurance, variables)
+    }
+    else {
+        const variables = { endcursor } 
+        x = await makeGraphqlRequest(getAllExpensesMutation, variables)   
+    }
+
+    
+    console.log('getExpenses', x.mongo.expenseCollection.edges)
     return x
 }
 
@@ -72,5 +93,15 @@ export const fetchExpenseById = async (id:string) => {
     }
     const x = await makeGraphqlRequest(getExpenseByIdQuery, variables)
     console.log('getExpenseById', x)
+    return x
+}
+
+export const deleteExpenseById = async (id:string) => {
+    client.setHeader('x-api-key', apiKey)
+    const variables = {
+        id
+    }
+    const x = await makeGraphqlRequest(deletelExpenseByIdMutation, variables)
+    console.log('deleteExpenseById', x)
     return x
 }

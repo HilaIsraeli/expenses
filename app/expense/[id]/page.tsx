@@ -1,11 +1,12 @@
 import { fetchExpenseById } from "@/app/lib/actions";
-import { ExpenseForm, ProjectInterface } from "@/components.types";
+import { ExpenseForm, ExpenseInterface } from "@/components.types";
+import ExpenseActions from "@/components/ExpenseActions";
 import RelatedExpenses from "@/components/RelatedExpenses";
 
 const Expense = async ({ params: { id } }: { params: { id: string } }) => {
   const expenseFull: ExpenseForm = (await fetchExpenseById(
     id
-  )) as ProjectInterface;
+  )) as ExpenseInterface;
   const expense = expenseFull.mongo.expense;
   // console.log("expense11111111", expenseFull);
   // console.log("expense11111111", id);
@@ -14,6 +15,7 @@ const Expense = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <div className="rounded-lg shadow-lg bg-white p-6 mb-6 max-w-md mx-auto">
       <div className="flex flex-col space-y-4">
+        <ExpenseActions expenseId={expense.id} />
         <div className="flex justify-between items-center">
           <p className="font-bold text-lg text-gray-700">Title:</p>
           <p className="text-gray-600">{expense.title}</p>

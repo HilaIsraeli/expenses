@@ -9,14 +9,14 @@ export type FormState = {
     category: string;
 };
 
-export interface ProjectInterface {
+export interface ExpenseInterface {
     title: string;
     description: string;
-    image: string;
-    liveSiteUrl: string;
-    githubUrl: string;
-    category: string;
     id: string;
+    ammount: string | number,
+    wasExpenseToInsurance: string | Boolean,
+    insuranceCompany: string,
+    date: string | Date,
     createdBy: {
       name: string;
       email: string;
@@ -24,6 +24,7 @@ export interface ProjectInterface {
       id: string;
     };
 }
+
 
 export interface UserProfile {
     id: string;
@@ -34,7 +35,7 @@ export interface UserProfile {
     githubUrl: string | null;
     linkedinUrl: string | null;
     projects: {
-      edges: { node: ProjectInterface }[];
+      edges: { node: ExpenseInterface }[];
       pageInfo: {
         hasPreviousPage: boolean;
         hasNextPage: boolean;
