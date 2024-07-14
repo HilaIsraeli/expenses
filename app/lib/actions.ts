@@ -92,9 +92,6 @@ export const fetchAllExpenses = async (endcursor?: string | null, wasExpenseToIn
         const variables = { endcursor } 
         x = await makeGraphqlRequest(getAllExpensesMutation, variables)   
     }
-
-    
-    console.log('getExpenses', x.mongo.expenseCollection.edges)
     return x
 }
 
