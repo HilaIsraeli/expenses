@@ -56,6 +56,7 @@ export interface SessionInterface extends Session {
 }
 
 export interface ExpenseForm {
+  mongo: any;
   id: string,
   title: string,
   ammount: string | number,
