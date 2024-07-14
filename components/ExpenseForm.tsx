@@ -43,7 +43,6 @@ const ExpenseForm = ({
         router.refresh();
       }
       if (type === "edit") {
-        console.log("1111111 form", form);
         // GraphQL update needs the 'set' key for each field:
         // mutation Mongo {
         //   mongo {

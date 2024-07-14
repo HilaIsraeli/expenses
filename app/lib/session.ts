@@ -8,9 +8,6 @@ import { createUser, getUser } from "./actions";
 import jsonwebtoken from 'jsonwebtoken';
 
 
-console.log('process.env.GOOGLE_CLIENT_ID', process.env.GOOGLE_CLIENT_ID);
-console.log('process.env.GOOGLE_CLIENT_SECRET', process.env.GOOGLE_CLIENT_SECRET);
-console.log('process.env.NEXTAUTH_SECRET', process.env.NEXTAUTH_SECRET);
 export const authOptions: NextAuthOptions = {
     
     providers: [GoogleProvider({
@@ -19,7 +16,6 @@ export const authOptions: NextAuthOptions = {
     })],
     jwt: {
         encode: ({ secret, token }) => {
-            console.log('JWT Secret encode:', secret);
           const encodedToken = jsonwebtoken.sign(
             {
               ...token,
@@ -32,7 +28,6 @@ export const authOptions: NextAuthOptions = {
           return encodedToken;
         },
         decode: async ({ secret, token }) => {
-            console.log('JWT Secret decode:', secret);
           const decodedToken = jsonwebtoken.verify(token!, secret);
           return decodedToken as JWT;
         },
@@ -43,10 +38,7 @@ export const authOptions: NextAuthOptions = {
     },
     callbacks: {
         async session({session}) {
-            console.log('hilaaaaaaaa');
-            console.log('session', session);
             const email = session.user?.email as string;
-            console.log('email', email);
             try {
                 const data = await getUser(email) as {user?: UserProfile};
 
@@ -59,28 +51,22 @@ export const authOptions: NextAuthOptions = {
                 }
                 return newSession;
             } catch (error) {
-                console.log('error retriving user data', error);
                 return session;
             }
             
         },
 
         async signIn({user} : {user: AdapterUser | User}) {
-            console.log('sign in user', user);
             try {
                 const isUserExist = await getUser(user?.email! as string) as {user?: UserProfile};
                 if (!isUserExist.user) {
-                    console.log('dont exist', user);
                     await createUser(user.name as string, user.email as string, user.image as string, "")
-                    console.log('after createUser');
                 }
                 
                 return true;
 
             }
             catch (error: any) {
-                console.log('error signing in', error);
-                console.log(error);
                 return false;
             }
         },

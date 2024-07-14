@@ -8,9 +8,6 @@ const Expense = async ({ params: { id } }: { params: { id: string } }) => {
     id
   )) as ExpenseInterface;
   const expense = expenseFull.mongo.expense;
-  // console.log("expense11111111", expenseFull);
-  // console.log("expense11111111", id);
-  // console.log("2222", expenseFull.mongo.expense.title);
 
   return (
     <div className="rounded-lg shadow-lg bg-white p-6 mb-6 max-w-md mx-auto">

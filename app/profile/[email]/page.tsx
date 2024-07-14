@@ -16,7 +16,6 @@ const ProfilePage = async ({ params }: Props) => {
     user?: UserProfile;
   };
   const user = userFull.mongo.user;
-  console.log("user", user);
   return (
     <section className="flexCenter flex-col max-w-10xl w-full mx-auto paddings">
       <section className="flexBetween max-lg:flex-col gap-10 w-full">

@@ -12,7 +12,7 @@ export const categoryFilters = [
     {
       title: 'To Vercel',
       link:
-        'https://github.com/HilaIsraeli/expenses.git'
+        'https://expenses-gamma-weld.vercel.app'
       
     },
   ];

@@ -14,7 +14,6 @@ const RelatedExpenses = async ({ expenseId }) => {
   const filteredExpenses = expenses.mongo.expenseCollection.edges.filter(
     (node: ExpenseSearchResultNode) => node.node.id != expenseId
   );
-  console.log("filteredExpenses", filteredExpenses.length);
 
   if (filteredExpenses.length === 0) {
     return <h1>No related expenses found</h1>;
