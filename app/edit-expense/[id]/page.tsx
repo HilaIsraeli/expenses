@@ -6,7 +6,7 @@ import { fetchExpenseById } from "@/app/lib/actions";
 
 const EditExpense = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getCurrentUser();
-  const expenseFull: ExpenseForm = (await fetchExpenseById(
+  const expenseFull: ExpenseInterface = (await fetchExpenseById(
     id
   )) as ExpenseInterface;
   const expense = expenseFull.mongo.expense;
