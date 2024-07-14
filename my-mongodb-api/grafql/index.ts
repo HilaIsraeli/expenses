@@ -13,6 +13,21 @@ export const getUserQuery = `query GetUser($email: String!) {
       }
       `;
 
+      export const getUserByNameQuery = `query GetUser($name: String!) {
+        mongo {
+          user(
+            by: {name: $name}
+          ) {
+            id
+            name
+            email
+            avatarUrl
+            description
+          }
+        }
+      }
+      `;
+
 export const getExpenseByIdQuery = `query GetExpenseById($id: ID){
   mongo {
     expense(by: {id: $id}) {

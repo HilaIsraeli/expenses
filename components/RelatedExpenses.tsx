@@ -3,11 +3,10 @@ import { getCurrentUser } from "@/app/lib/session";
 import {
   ExpenseSearchResult,
   ExpenseSearchResultNode,
-  UserProfile,
 } from "@/components.types";
 import Link from "next/link";
 
-const RelatedExpenses = async ({ userId, expenseId }) => {
+const RelatedExpenses = async ({ expenseId }) => {
   const expenses = (await fetchAllExpenses()) as ExpenseSearchResult[];
   const user = await getCurrentUser();
   const userName = user.user.name;

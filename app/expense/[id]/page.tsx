@@ -45,7 +45,7 @@ const Expense = async ({ params: { id } }: { params: { id: string } }) => {
           </div>
         )}
       </div>
-      <RelatedExpenses userId={expense.userId} expenseId={id} />
+      <RelatedExpenses expenseId={id} />
     </div>
   );
 };

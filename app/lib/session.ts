@@ -4,7 +4,6 @@ import { AdapterUser } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 import { JWT } from "next-auth/jwt";
 import { SessionInterface, UserProfile } from "@/components.types";
-import { use } from "react";
 import { createUser, getUser } from "./actions";
 import jsonwebtoken from 'jsonwebtoken';
 

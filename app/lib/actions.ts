@@ -1,6 +1,6 @@
 
 import { ExpenseForm } from "@/components.types";
-import { getUserQuery, createUserMutation, createExpenseMutation, getAllExpensesMutation, getExpenseByIdQuery, deletelExpenseByIdMutation, updateExpenseMutation, getAllExpensesMutationWithWasExpenseToInsurance } from "@/my-mongodb-api/grafql";
+import { getUserQuery, createUserMutation, createExpenseMutation, getAllExpensesMutation, getExpenseByIdQuery, deletelExpenseByIdMutation, updateExpenseMutation, getAllExpensesMutationWithWasExpenseToInsurance, getUserByIdQuery, getUserByNameQuery } from "@/my-mongodb-api/grafql";
 import { GraphQLClient } from "graphql-request"
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -24,15 +24,27 @@ const makeGraphqlRequest = async (query: string, variables = {}) => {
 
 export const getUser = async (email: string) => {
     client.setHeader('x-api-key', apiKey)
-    console.log('getUser', email)
+    //console.log('getUser111', email)
     const variables = {
         email
     }
     const x =  await makeGraphqlRequest(getUserQuery, variables)
-  //  console.log('xxxxx', x)
+    //console.log('xxxxxttt', x)
     return x
 }
  
+
+
+export const getUserByName = async (name: string) => {
+    client.setHeader('x-api-key', apiKey)
+    const variables = {
+        name
+    }
+    const x =  await makeGraphqlRequest(getUserByNameQuery, variables)
+    return x
+}
+ 
+
 export const createUser = async (name: string, email: string, avatarUrl: string, description: string) => {
     client.setHeader('x-api-key', apiKey)
     const variables = {

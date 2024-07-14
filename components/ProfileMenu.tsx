@@ -60,23 +60,7 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
             <div className="flex flex-col gap-3 pt-10 items-start w-full">
               <Menu.Item>
                 <Link
-                  href={`/profile/${session?.user?.id}`}
-                  className="text-sm"
-                >
-                  Work Preferences
-                </Link>
-              </Menu.Item>
-              <Menu.Item>
-                <Link
-                  href={`/profile/${session?.user?.id}`}
-                  className="text-sm"
-                >
-                  Settings
-                </Link>
-              </Menu.Item>
-              <Menu.Item>
-                <Link
-                  href={`/profile/${session?.user?.id}`}
+                  href={`/profile/${session?.user?.email}`}
                   className="text-sm"
                 >
                   Profile
