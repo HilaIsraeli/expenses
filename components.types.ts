@@ -10,6 +10,7 @@ export type FormState = {
 };
 
 export interface ExpenseInterface {
+    mongo: any;
     title: string;
     description: string;
     id: string;

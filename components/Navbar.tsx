@@ -18,13 +18,6 @@ const Navbar = async () => {
           <Image src="/logo.svg" width={115} height={42} alt="Expenses" />
   */}
         </Link>
-        <ul className="xl:flex hidden text-small gap-7">
-          {NavLinks.map((link) => (
-            <Link href={link.href} key={link.key}>
-              {link.text}
-            </Link>
-          ))}
-        </ul>
         <div className="flex justify-end gap-4">
           {session?.user ? (
             <>
