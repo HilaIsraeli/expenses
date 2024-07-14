@@ -1,6 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using mongoDB and graphQL. 
+Welcome to my Expenses app!
 
-## Getting Started
+You can sign-in with your google account and add, edit and delete your expenses. 
+You can also filter the expenses already expensed to the insurance company. 
+
+Enjoy! 
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using mongoDB (Atlas) and graphQL and Grafbase. 
+
+## Getting Started locally
 Run the mongo api:
   cd /expenses/my-mongodb-api
   run npx grafbase dev
@@ -26,12 +33,56 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+I used the tutorials: 
+- for project:
+    https://www.youtube.com/watch?v=986hztrfaSQ&t=15958s
+    related github: git@github.com:adrianhajdin/project_nextjs13_flexibble.git
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- setup GraphQL with MongoDB and Grafbase:
+    https://www.mongodb.com/developer/products/atlas/instant-graphql-apis-mongodb-grafbase/
+    https://grafbase.com/docs/config
+    https://grafbase.com/docs/resolvers 
+- related pathfinder (to create graphQL queries and then copy-paste them to code): http://127.0.0.1:4000/
+  some queries for example:
+  
+        mutation CreateUser {
+          mongo {
+            userCreate(
+              input: {
+                name:"Hila israeli"
+                email: "hilaisraeli3@gmail.com"
+                avatarUrl: "http://127.0.0.1:4000/"
+                description: "description"
+              }
+            ) {
+              insertedId
+            }
+          }
+        }
+        
+        mutation Mongo {
+          mongo {
+            expenseUpdate(input: {title:{set: "abcabc"}}, by: {id: "6665bd05ae06024365d4c51b"}) {
+              modifiedCount
+            }
+          }
+        }
+        
+        query Mongo {
+          mongo {
+            user(by: {email: "hilaisraeli3@gmail.com"}) {
+              avatarUrl
+            }
+          }
+        }
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+ 
+
+- mongo atlas (to view and manage DB) : https://account.mongodb.com/account (login with Google with my email)
+  I can browse the collection by navigating to Collects -> Expenses 
+
+
+
 
 ## Deploy on Vercel
 
