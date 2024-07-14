@@ -5,7 +5,8 @@ You can also filter the expenses already expensed to the insurance company.
 
 Enjoy! 
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using mongoDB (Atlas) and graphQL and Grafbase. 
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using mongoDB (Atlas), graphQL and Grafbase. 
+Deployed to vercel: https://vercel.com/hilaisraelis-projects/expenses
 
 ## Getting Started locally
 Run the mongo api:
@@ -41,7 +42,10 @@ I used the tutorials:
 - setup GraphQL with MongoDB and Grafbase:
     https://www.mongodb.com/developer/products/atlas/instant-graphql-apis-mongodb-grafbase/
     https://grafbase.com/docs/config
-    https://grafbase.com/docs/resolvers 
+    https://grafbase.com/docs/resolvers
+
+- grafbase: https://app.grafbase.com/hilaisraeli/expenses/branches/main
+  
 - related pathfinder (to create graphQL queries and then copy-paste them to code): http://127.0.0.1:4000/
   some queries for example:
   
@@ -81,8 +85,7 @@ I used the tutorials:
 - mongo atlas (to view and manage DB) : https://account.mongodb.com/account (login with Google with my email)
   I can browse the collection by navigating to Collects -> Expenses 
 
-
-
+- vercel: https://vercel.com/hilaisraelis-projects/expenses
 
 ## Deploy on Vercel
 
@@ -90,9 +93,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
-grafbase: https://app.grafbase.com/hilaisraeli/expenses/branches/main
-mongoDB Atlas: https://account.mongodb.com/
-The guide I used: https://www.mongodb.com/developer/products/atlas/instant-graphql-apis-mongodb-grafbase/
 
 
