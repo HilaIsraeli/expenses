@@ -96,9 +96,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
-<img width="348" alt="image" src="https://github.com/user-attachments/assets/731a077d-d34d-4c47-b298-014dbb07044d">
+
 <img width="1769" alt="image" src="https://github.com/user-attachments/assets/bdb045a2-4bff-4020-835d-c1617aad0cf8">
 <img width="588" alt="image" src="https://github.com/user-attachments/assets/d81243d6-b369-4a4f-b2b6-e58abc8effbd">
-
+<img width="348" alt="image" src="https://github.com/user-attachments/assets/731a077d-d34d-4c47-b298-014dbb07044d">
 
 
