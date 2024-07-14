@@ -36,6 +36,7 @@ const Home = async ({
       <Categories />
       <section className="projects-grid">
         {expenses.edges.map((node: ExpenseSearchResultNode) => (
+          // eslint-disable-next-line react/jsx-key
           <ExpenseCard id={node.node.id} expense={node.node} />
         ))}
       </section>
