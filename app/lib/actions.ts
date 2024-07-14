@@ -1,6 +1,6 @@
 
 import { ExpenseForm } from "@/components.types";
-import { getUserQuery, createUserMutation, createExpenseMutation, getAllExpensesMutation, getExpenseByIdQuery, deletelExpenseByIdMutation, updateExpenseMutation, getAllExpensesMutationWithWasExpenseToInsurance, getUserByIdQuery, getUserByNameQuery } from "@/my-mongodb-api/grafql";
+import { getUserQuery, createUserMutation, createExpenseMutation, getAllExpensesMutation, getExpenseByIdQuery, deletelExpenseByIdMutation, updateExpenseMutation, getAllExpensesMutationWithWasExpenseToInsurance, getUserByNameQuery } from "@/my-mongodb-api/grafql";
 import { GraphQLClient } from "graphql-request"
 
 const isProduction = process.env.NODE_ENV === "production";
