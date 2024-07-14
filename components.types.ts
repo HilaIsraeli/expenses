@@ -71,6 +71,7 @@ export type ExpenseSearchResultNode = {
 };
 
 export type ExpenseSearchResult = {
+  mongo: any;
   edges: ExpenseSearchResultNode[];
   pageInfo: {
     hasPreviousPage: boolean;
