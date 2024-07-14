@@ -22,7 +22,7 @@ const Home = async ({
   const expensesFull = (await fetchAllExpenses(
     endcursor,
     wasExpenseToInsurance
-  )) as ExpenseSearchResult[];
+  )) as ExpenseSearchResult;
   const expenses = expensesFull.mongo.expenseCollection;
   // console.log("expenses1111", expenses.mongo.expenseCollection.edges);
   // console.log("expenses1111", expenses);

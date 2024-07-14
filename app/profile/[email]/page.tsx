@@ -11,7 +11,10 @@ type Props = {
 
 const ProfilePage = async ({ params }: Props) => {
   const email = decodeURIComponent(params.email);
-  const userFull = (await getUser(email)) as { user?: UserProfile };
+  const userFull = (await getUser(email)) as {
+    mongo: any;
+    user?: UserProfile;
+  };
   const user = userFull.mongo.user;
   console.log("user", user);
   return (
