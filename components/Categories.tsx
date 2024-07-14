@@ -10,7 +10,7 @@ const Categories = () => {
   const handleCLickOnCategory = (category: string) => {
     const newSearchParams = new URLSearchParams(window.location.search);
     if (!isButtonDisabled) {
-      newSearchParams.set(category, "true");
+      newSearchParams.set(category, "yes");
       setButtonDisabled(true);
     } else {
       newSearchParams.delete(category);
