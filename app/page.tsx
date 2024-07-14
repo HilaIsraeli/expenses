@@ -38,7 +38,6 @@ const Home = async ({
           <ExpenseCard id={node.node.id} expense={node.node} />
         ))}
       </section>
-      <h1>Posts</h1>
       <LoadMore
         endCursor={expenses?.pageInfo?.endCursor}
         hasNextPage={expenses?.pageInfo?.hasNextPage}

@@ -17,8 +17,8 @@ const ExpenseForm = ({
 }) => {
   const router = useRouter();
   const [form, setForm] = useState({
-    id: expense?.id || "",
-    mongo: expense?.mongo || "",
+    // id: expense?.id || "", can't add expense it I add those...
+    // mongo: expense?.mongo || "",
     title: expense?.title || "",
     ammount: expense?.ammount || "",
     wasExpenseToInsurance: expense?.wasExpenseToInsurance || "",
